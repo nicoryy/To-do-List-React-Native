@@ -15,6 +15,20 @@ export const styles = StyleSheet.create({
         alignItems:'center',
         marginBottom:22
     },
+    checkConteiner:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:4,
+        textAlign:'right'
+    },
+    checkCountIcon:{
+        color:'#22C55E',
+        fontSize:28
+    },
+    checkCountText:{
+        color:'#22C55E',
+        fontSize:18
+    },
     title: {
         color: '#fff',
         fontSize: 32,
