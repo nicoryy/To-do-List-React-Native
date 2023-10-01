@@ -8,11 +8,16 @@ export const styles = StyleSheet.create({
         padding: 12,
         paddingTop:50
     },
+
+    titleConteiner:{
+        flexDirection:"row",
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginBottom:22
+    },
     title: {
         color: '#fff',
-        fontSize: 28,
-        marginTop: 12,
-        marginBottom: 12,
+        fontSize: 32,
     },
     input: {
         padding: 16,

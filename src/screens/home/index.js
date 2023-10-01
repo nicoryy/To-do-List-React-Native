@@ -1,6 +1,7 @@
 import { TextInput, TouchableOpacity, View, Text } from "react-native";
 import { styles } from "./styles";
 import { useState } from "react";
+import Icons from '@expo/vector-icons/Ionicons'
 
 export function HomeScreen() {
 
@@ -19,7 +20,13 @@ export function HomeScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Lista de Tarefas</Text>
+            <View style={styles.titleConteiner}>
+                <Text style={styles.title}>Lista de Tarefas</Text>
+                <View >
+                    <Text>1/1</Text>
+                    <Icons name='checkmark-outline'/>
+                </View>
+            </View>
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder="Nome da tarefa"
