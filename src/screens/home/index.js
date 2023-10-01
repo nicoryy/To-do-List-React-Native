@@ -22,9 +22,9 @@ export function HomeScreen() {
         <View style={styles.container}>
             <View style={styles.titleConteiner}>
                 <Text style={styles.title}>Lista de Tarefas</Text>
-                <View >
-                    <Text>1/1</Text>
-                    <Icons name='checkmark-outline'/>
+                <View style={styles.checkConteiner}>
+                    <Text style={styles.checkCountText}>1/1</Text>
+                    <Icons style={styles.checkCountIcon} name='checkmark-outline'/>
                 </View>
             </View>
             <View style={styles.inputContainer}>
