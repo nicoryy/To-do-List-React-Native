@@ -83,7 +83,7 @@ export function HomeScreen() {
             <FlatList
                 data={todoList}
                 style={styles.list}
-                // contentContainerStyle={styles.emptyListContainer} !!!!!!!!!!!!!!!!!!!!!!!
+                contentContainerStyle={styles.listContentStyle} 
                 ListEmptyComponent={
                     <View style={styles.emptyListContainer}>
                         <Icons name="trash-bin-outline" style={styles.emptyListIcon} />
