@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     },
     input: {
         padding: 16,
-        marginTop: 12,
+        // marginTop: 12,
         borderRadius: 8,
         backgroundColor: '#3F3F46',
         height: 48,
@@ -43,20 +43,32 @@ export const styles = StyleSheet.create({
         flex: 1,
     },
     inputContainer: {
-        gap: 16,
-        flexDirection: "row"
+        paddingTop:12,
+        gap: 12,
+        flexDirection: "row",
+        alignItems:'center',
     },
     iconAdd: {
-        width: 30
+        color:'#FAFAFA',
+        fontSize:25
     },
     buttonAdd: {
-        marginTop: 12,
-        borderRadius: 25,
-        width: 48,
-        height: 48,
-        backgroundColor: '#60A5FA',
-        alignItems: "center",
-        justifyContent: "center"
+        height:50,
+        width:50,
+        borderRadius:30,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#8c198c'
+    },
+    iconRemove: {
+        color:'#FAFAFA',
+        fontSize:25
+    },
+    buttonRemove: {
+        height:40,
+        width:40,
+        justifyContent:'center',
+        alignItems:'center',
     },
     list: {
         flexDirection: "column",
@@ -67,10 +79,60 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         borderBottomColor: "#3F3F46",
         borderBottomWidth: 1,
-        paddingBottom: 12
+        paddingBottom: 12,
+        justifyContent:'space-between'
     },
     listItemText: {
         color: "#fff",
         fontSize: 18
-    }
+    },
+    checkContainer: {
+    flexDirection: "row",
+    alignItems:"center",
+    gap: 12,
+    flex: 1,
+    paddingVertical: 4
+  },
+  listContentStyle: {
+    height: "100%"
+  },
+  emptyListContainer: {
+    alignItems: "center",
+    height: "100%",
+    justifyContent: "center"
+  },
+  emptyListIcon: {
+    color: '#3F3F46',
+    fontSize:  72,
+    marginBottom: 20
+  },
+  emptyListTitle: {
+    color: '#3F3F46',
+    fontSize:  28,
+  },
+  emptyListDescrption: {
+    color: '#3F3F46',
+    fontSize:  16,
+    marginBottom: 100
+  },
+  listItemButtonRemove: {
+    color: '#71717A',
+    fontSize: 24
+  },
+  separator: {
+    backgroundColor: "#3F3F46",
+    height: 1,
+    marginVertical: 8
+  },
+  checkCountContainer: {
+    flexDirection: "row",
+    alignItems:"center",
+    gap: 4,
+    textAlign: "right"
+  },
+  checkboxConteiner:{
+    flexDirection:'row',
+    gap:14,
+    alignItems:'center'
+  }
 })
