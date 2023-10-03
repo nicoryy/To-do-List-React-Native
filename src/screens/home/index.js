@@ -28,9 +28,7 @@ export function HomeScreen() {
     function addItem() {
         if (!inputValue.trim()) return;
 
-        const existItem = !!todoList.find((todo) => todo.name === inputValue.length
-        ? inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-        : inputValue);
+        const existItem = !!todoList.find((todo) => todo.name === inputValue);
 
         if (existItem) {
             Alert.alert("Ops..", "Parece que já tem um desse em :/");
@@ -40,14 +38,12 @@ export function HomeScreen() {
         setTodoList((prev) => {
             setInputValue("");
             -Keyboard.dismiss();
-            return [...prev, { name: inputValue.length
-                ? inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
-                : inputValue }];
+            return [...prev, { name: inputValue }];
         });
     }
 
     return (
-        // TITLE
+            // TITLE
         <View style={styles.container}>
             <View style={styles.titleConteiner}>
                 <Text style={styles.title}>Lista de Tarefas</Text>
@@ -70,7 +66,9 @@ export function HomeScreen() {
                     placeholder="Nome da tarefa"
                     placeholderTextColor="#71717A"
                     style={styles.input}
-                    onChangeText={(txt) => setInputValue(txt)}
+                    onChangeText={(txt) => setInputValue(txt.length
+                        ? txt.charAt(0).toUpperCase() + txt.slice(1)
+                        : txt)}
                     value={inputValue}
                     onSubmitEditing={addItem}
                 />
@@ -84,9 +82,11 @@ export function HomeScreen() {
                     <Icons style={styles.iconAdd} name="add-outline" />
                 </TouchableOpacity>
             </View>
-
+            
+            {/* RENDER LIST */}
             <FlatList
                 data={todoList}
+                ItemSeparatorComponent={<View style={{ padding: 10 }}></View>}
                 style={styles.list}
                 contentContainerStyle={styles.listContentStyle}
                 ListEmptyComponent={
@@ -120,7 +120,6 @@ export function HomeScreen() {
                         </TouchableOpacity>
                     </View>
                 )}
-                ItemSeparatorComponent={<View style={{ padding: 10 }}></View>}
             />
         </View>
     );
