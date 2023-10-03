@@ -1,6 +1,5 @@
 // My own version
 
-
 import {
     TextInput,
     TouchableOpacity,
@@ -20,18 +19,18 @@ export function HomeScreen() {
     const [inputValue, setInputValue] = useState("");
     const [checkeds, setCheckeds] = useState(0);
 
-    function removeItem(id) {
-        if (todoList.length > 1) {
-            setTodoList(todoList.slice(todoList.indexOf(id.target, 1)));
-        } else {
-            setTodoList([]);
-        }
+    function removeItem(name) {
+        setTodoList((current) =>
+            current.filter((todoList) => todoList.name !== name)
+        );
     }
 
     function addItem() {
         if (!inputValue.trim()) return;
 
-        const existItem = !!todoList.find((todo) => todo.name === inputValue);
+        const existItem = !!todoList.find((todo) => todo.name === inputValue.length
+        ? inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+        : inputValue);
 
         if (existItem) {
             Alert.alert("Ops..", "Parece que já tem um desse em :/");
@@ -41,7 +40,9 @@ export function HomeScreen() {
         setTodoList((prev) => {
             setInputValue("");
             -Keyboard.dismiss();
-            return [...prev, { name: inputValue }];
+            return [...prev, { name: inputValue.length
+                ? inputValue.charAt(0).toUpperCase() + inputValue.slice(1)
+                : inputValue }];
         });
     }
 
@@ -59,9 +60,7 @@ export function HomeScreen() {
                                 name="checkmark-outline"
                             />
                         </Text>
-                    ) : (
-                        null
-                    )}
+                    ) : null}
                 </View>
             </View>
 
