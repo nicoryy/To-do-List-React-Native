@@ -88,6 +88,12 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         maxWidth:'85%'
     },
+    listItemTextChecked: {
+        color: "#fff",
+        fontSize: 18,
+        maxWidth:'85%',
+        textDecorationLine:'line-through'
+    },
     checkContainer: {
         flexDirection: "row",
         alignItems: "center",

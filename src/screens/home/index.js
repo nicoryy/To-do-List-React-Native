@@ -17,15 +17,14 @@ import Checkbox from "expo-checkbox";
 export function HomeScreen() {
     const [todoList, setTodoList] = useState([]);
     const [inputValue, setInputValue] = useState("");
-    const [checkeds, setCheckeds] = useState(0);
 
-    function removeItem(name) {
+    const removeItem = (name) => {
         setTodoList((current) =>
             current.filter((todoList) => todoList.name !== name)
         );
-    }
+    };
 
-    function addItem() {
+    const addItem = () => {
         if (!inputValue.trim()) return;
 
         const existItem = !!todoList.find((todo) => todo.name === inputValue);
@@ -38,19 +37,33 @@ export function HomeScreen() {
         setTodoList((prev) => {
             setInputValue("");
             -Keyboard.dismiss();
-            return [...prev, { name: inputValue }];
+            return [...prev, { name: inputValue, status: false }];
         });
-    }
+    };
+
+    const handleCheckTodo = (name) => {
+        const currentTodoList = todoList.map((todo) => {
+            if (todo.name === name) {
+                todo.checked = !todo.checked;
+            }
+
+            return todo;
+        });
+
+        setTodoList(currentTodoList);
+    };
+
+    const countChecked = todoList.filter((todo) => todo.checked).length;
 
     return (
-            // TITLE
+        // TITLE
         <View style={styles.container}>
             <View style={styles.titleConteiner}>
                 <Text style={styles.title}>Lista de Tarefas</Text>
                 <View style={styles.checkConteiner}>
                     {todoList.length > 0 ? (
                         <Text style={styles.checkCountText}>
-                            {checkeds}/{todoList.length}
+                            {countChecked}/{todoList.length}
                             <Icons
                                 style={styles.checkCountIcon}
                                 name="checkmark-outline"
@@ -66,9 +79,13 @@ export function HomeScreen() {
                     placeholder="Nome da tarefa"
                     placeholderTextColor="#71717A"
                     style={styles.input}
-                    onChangeText={(txt) => setInputValue(txt.length
-                        ? txt.charAt(0).toUpperCase() + txt.slice(1)
-                        : txt)}
+                    onChangeText={(txt) =>
+                        setInputValue(
+                            txt.length
+                                ? txt.charAt(0).toUpperCase() + txt.slice(1)
+                                : txt
+                        )
+                    }
                     value={inputValue}
                     onSubmitEditing={addItem}
                 />
@@ -82,30 +99,31 @@ export function HomeScreen() {
                     <Icons style={styles.iconAdd} name="add-outline" />
                 </TouchableOpacity>
             </View>
-            
+
             {/* RENDER LIST */}
             <FlatList
                 data={todoList}
-                ItemSeparatorComponent={<View style={{ padding: 10 }}></View>}
-                style={styles.list}
-                contentContainerStyle={styles.listContentStyle}
-                ListEmptyComponent={
-                    <View style={styles.emptyListContainer}>
-                        <Icons
-                            name="trash-bin-outline"
-                            style={styles.emptyListIcon}
-                        />
-                        <Text style={styles.emptyListTitle}>Lista Vazia</Text>
-                        <Text style={styles.emptyListDescrption}>
-                            Cadastre alguma atividade
-                        </Text>
-                    </View>
-                }
                 renderItem={({ item }) => (
-                    <View style={styles.listItem}>
-                        <TouchableOpacity style={styles.checkboxConteiner}>
-                            <Checkbox value={false} onPress={() => {}} />
-                            <Text style={styles.listItemText}>{item.name}</Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            handleCheckTodo(item.name);
+                        }}
+                        style={styles.listItem}
+                    >
+                        <TouchableOpacity
+                            style={styles.checkboxConteiner}
+                            color={item.checked ? "#60A5FA" : undefined}
+                        >
+                            <Checkbox value={item.checked} color={"#8c198c"} />
+                            <Text
+                                style={
+                                    item.checked
+                                        ? styles.listItemTextChecked
+                                        : styles.listItemText
+                                }
+                            >
+                                {item.name}
+                            </Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -118,8 +136,24 @@ export function HomeScreen() {
                                 style={styles.listItemButtonRemove}
                             />
                         </TouchableOpacity>
-                    </View>
+                    </TouchableOpacity>
                 )}
+                ItemSeparatorComponent={<View style={{ padding:10 }}></View>}
+                style={styles.list}
+                // contentContainerStyle={styles.listContentStyle}
+                ListEmptyComponent={
+                    <View style={styles.emptyListContainer}>
+                        <Icons
+                            name="trash-bin-outline"
+                            style={styles.emptyListIcon}
+                        />
+                        <Text style={styles.emptyListTitle}>Lista Vazia</Text>
+                        <Text style={styles.emptyListDescrption}>
+                            Cadastre alguma atividade
+                        </Text>
+                    </View>
+                }
+                scrollEnabled={true}
             />
         </View>
     );
