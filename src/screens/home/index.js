@@ -13,7 +13,7 @@ import { styles } from "./styles";
 import { useState } from "react";
 import Icons from "@expo/vector-icons/Ionicons";
 import Checkbox from "expo-checkbox";
-import {HeaderTitle} from '../../components/HeaderTitle' 
+import { HeaderTitle } from "../../components/HeaderTitle";
 
 export function HomeScreen() {
     const [todoList, setTodoList] = useState([]);
@@ -59,8 +59,11 @@ export function HomeScreen() {
     return (
         // TITLE
         <View style={styles.container}>
-
-            <HeaderTitle styles={styles} todoList={todoList} countChecked={countChecked}/>
+            <HeaderTitle
+                styles={styles}
+                todoList={todoList}
+                countChecked={countChecked}
+            />
 
             {/* INPUT TEXT */}
             <View style={styles.inputContainer}>
@@ -94,16 +97,17 @@ export function HomeScreen() {
                 data={todoList}
                 renderItem={({ item }) => (
                     <TouchableOpacity
+                        activeOpacity={1}
                         onPress={() => {
                             handleCheckTodo(item.name);
                         }}
                         style={styles.listItem}
                     >
-                        <TouchableOpacity
+                        <View
                             style={styles.checkboxConteiner}
                             color={item.checked ? "#60A5FA" : undefined}
                         >
-                            <Checkbox value={item.checked} color={"#8c198c"} />
+                            <Checkbox onValueChange={()=>handleCheckTodo(item.name)} value={item.checked} color={"#8c198c"} />
                             <Text
                                 style={
                                     item.checked
@@ -113,7 +117,7 @@ export function HomeScreen() {
                             >
                                 {item.name}
                             </Text>
-                        </TouchableOpacity>
+                        </View>
 
                         <TouchableOpacity
                             onPress={() => {
@@ -127,7 +131,7 @@ export function HomeScreen() {
                         </TouchableOpacity>
                     </TouchableOpacity>
                 )}
-                ItemSeparatorComponent={<View style={{ padding:10 }}></View>}
+                ItemSeparatorComponent={<View style={{ padding: 10 }}></View>}
                 style={styles.list}
                 // contentContainerStyle={styles.listContentStyle}
                 ListEmptyComponent={
