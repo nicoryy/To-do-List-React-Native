@@ -13,6 +13,7 @@ import { styles } from "./styles";
 import { useState } from "react";
 import Icons from "@expo/vector-icons/Ionicons";
 import Checkbox from "expo-checkbox";
+import {HeaderTitle} from '../../components/HeaderTitle' 
 
 export function HomeScreen() {
     const [todoList, setTodoList] = useState([]);
@@ -58,20 +59,8 @@ export function HomeScreen() {
     return (
         // TITLE
         <View style={styles.container}>
-            <View style={styles.titleConteiner}>
-                <Text style={styles.title}>Lista de Tarefas</Text>
-                <View style={styles.checkConteiner}>
-                    {todoList.length > 0 ? (
-                        <Text style={styles.checkCountText}>
-                            {countChecked}/{todoList.length}
-                            <Icons
-                                style={styles.checkCountIcon}
-                                name="checkmark-outline"
-                            />
-                        </Text>
-                    ) : null}
-                </View>
-            </View>
+
+            <HeaderTitle styles={styles} todoList={todoList} countChecked={countChecked}/>
 
             {/* INPUT TEXT */}
             <View style={styles.inputContainer}>
