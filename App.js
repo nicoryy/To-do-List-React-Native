@@ -1,15 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, View } from "react-native";
-import { HomeScreen } from "./src/screens/home";
-import { Styles } from "./src/styles/global.style";
-
+import { Drawer} from './src/components/DrawerRouter'
+import { NavigationContainer } from "@react-navigation/native";
+    
 export default function App() {
     return (
-        <View style={Styles.conteiner}>
-            <SafeAreaView>
-                <HomeScreen />
-                <StatusBar style="light" />
-            </SafeAreaView>
-        </View>
+        <NavigationContainer>
+            <StatusBar style="light"/>
+            <Drawer/>
+        </NavigationContainer>
     );
 }

@@ -2,12 +2,11 @@ import { Text, View } from "react-native";
 import Icons from "@expo/vector-icons/Ionicons";
 
 export const HeaderTitle = (props) => {
+    const styles = props.styles;
+    const countChecked = props.countChecked;
+    const todoList = props.todoList;
 
-    const styles = props.styles
-    const countChecked = props.countChecked
-    const todoList = props.todoList
-
-    return(
+    return (
         <View style={styles.titleConteiner}>
             <Text style={styles.title}>Lista de Tarefas</Text>
             <View style={styles.checkConteiner}>
@@ -22,5 +21,5 @@ export const HeaderTitle = (props) => {
                 ) : null}
             </View>
         </View>
-    )
+    );
 };
