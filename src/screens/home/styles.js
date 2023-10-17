@@ -26,13 +26,18 @@ export const styles = StyleSheet.create({
         color: "#22C55E",
         fontSize: 28,
     },
+    menuIcon: {
+        color: "#575761",
+        fontSize: 36,
+    },
     checkCountText: {
         color: "#22C55E",
         fontSize: 18,
     },
     title: {
-        color: "#fff",
+        color: "#a3a3a3",
         fontSize: 32,
+        marginLeft:'15%'
     },
     input: {
         padding: 16,
@@ -143,4 +148,10 @@ export const styles = StyleSheet.create({
         gap: 14,
         alignItems: "center",
     },
+
+    openMenu:{
+        position:'absolute',
+        marginTop:12,
+    }
+
 });

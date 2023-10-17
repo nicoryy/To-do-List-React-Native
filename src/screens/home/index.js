@@ -15,7 +15,7 @@ import Icons from "@expo/vector-icons/Ionicons";
 import Checkbox from "expo-checkbox";
 import { HeaderTitle } from "../../components/HeaderTitle";
 
-export function HomeScreen() {
+export function HomeScreen({navigation}) {
     const [todoList, setTodoList] = useState([]);
     const [inputValue, setInputValue] = useState("");
 
@@ -63,7 +63,14 @@ export function HomeScreen() {
                 styles={styles}
                 todoList={todoList}
                 countChecked={countChecked}
-            />
+            >
+                <TouchableOpacity style={styles.openMenu} onPress={()=>navigation.openDrawer()}>
+                    <Icons
+                        style={styles.menuIcon}
+                        name="menu-outline"
+                    />
+                </TouchableOpacity>
+            </HeaderTitle>
 
             {/* INPUT TEXT */}
             <View style={styles.inputContainer}>

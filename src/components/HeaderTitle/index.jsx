@@ -1,13 +1,14 @@
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Icons from "@expo/vector-icons/Ionicons";
 
-export const HeaderTitle = (props) => {
-    const styles = props.styles;
-    const countChecked = props.countChecked;
-    const todoList = props.todoList;
+export const HeaderTitle = ({styles, todoList, countChecked, children}) => {
+    // const styles = props.styles;
+    // const countChecked = props.countChecked;
+    // const todoList = props.todoList;
 
     return (
         <View style={styles.titleConteiner}>
+            {children}
             <Text style={styles.title}>Lista de Tarefas</Text>
             <View style={styles.checkConteiner}>
                 {todoList.length > 0 ? (
