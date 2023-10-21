@@ -113,6 +113,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         height: "100%",
         justifyContent: "center",
+        marginTop:'25%'
     },
     emptyListIcon: {
         color: "#3F3F46",
