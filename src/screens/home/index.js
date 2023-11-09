@@ -10,14 +10,34 @@ import {
     Keyboard,
 } from "react-native";
 import { styles } from "./styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icons from "@expo/vector-icons/Ionicons";
 import Checkbox from "expo-checkbox";
 import { HeaderTitle } from "../../components/HeaderTitle";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function HomeScreen({navigation}) {
     const [todoList, setTodoList] = useState([]);
     const [inputValue, setInputValue] = useState("");
+
+    const readItem = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('todoList');
+            return jsonValue != null ? setTodoList(JSON.parse(jsonValue)) : null;
+        } catch (e) {
+            // error reading value
+        }
+    }
+
+    
+    const addStorage = async () => {
+        try {
+            const jsonValue = JSON.stringify( todoList );
+            await AsyncStorage.setItem('todoList', jsonValue);
+          } catch (e) {
+            console.log(e);
+          }
+    }
 
     const removeItem = (name) => {
         setTodoList((current) =>
@@ -37,9 +57,11 @@ export function HomeScreen({navigation}) {
 
         setTodoList((prev) => {
             setInputValue("");
-            -Keyboard.dismiss();
+            Keyboard.dismiss();
             return [...prev, { name: inputValue, status: false }];
-        });
+        })
+
+        addStorage()
     };
 
     const handleCheckTodo = (name) => {
@@ -56,6 +78,14 @@ export function HomeScreen({navigation}) {
 
     const countChecked = todoList.filter((todo) => todo.checked).length;
 
+    useEffect(()=>{
+        readItem()
+    }, [])
+
+    useEffect(()=>{
+        addStorage()
+    },[todoList])
+    
     return (
         // TITLE
         <View style={styles.container}>
